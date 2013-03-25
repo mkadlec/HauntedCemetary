@@ -1,4 +1,7 @@
-story = [[0, 1, 1], [1, 2, 3], [2, 4, 3], [3, 5, 6], [4, 9, 3], [5, 12, 6], [6, 7, 8], [7, 99, 99], [8, 99, 99], [9, 1, 10], [10, 11, 99], [11, 1, 1], [12, 13, 1]]
+# story array[page number, option 1 page number, option 2 page number] 
+story = [[0, 1, 1], [1, 2, 3], [2, 4, 3], [3, 5, 6], [4, 9, 3], [5, 12, 6], [6, 7, 8], [7, 99, 99], [8, 99, 99], [9, 1, 10],
+		 [10, 11, 99], [11, 1, 1], [12, 13, 1]]
+# starting health
 @health = 10
 
 def instructions()
@@ -147,7 +150,7 @@ def go_to(page)
 end
 
 def the_end
-	sleep 5
+	sleep 3
 	puts "The End."
 	puts "\nWant to start again?"
 	puts "1. Yes\n"
@@ -157,6 +160,8 @@ def the_end
 		@page = 0
 		@choice = 1
 		@retval = :restart
+	else
+		puts "\nThanks for playing " + @name + "!"
 	end
 end
 
