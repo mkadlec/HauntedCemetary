@@ -1,4 +1,4 @@
-The goal of this program was to teach my son (aged 6) how to read (using pretty basic words), do a little math, and have fun.
+The goal of this program was to help teach my son (aged 6) how to read (using pretty basic words), do a little math, and have fun.
 
 This simple ruby program will take a kid through some Choose-your-own-adventure scenarios and hopefully have some fun.
 
