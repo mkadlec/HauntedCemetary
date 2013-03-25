@@ -146,6 +146,20 @@ def go_to(page)
 
 end
 
+def the_end
+	sleep 5
+	puts "The End."
+	puts "\nWant to start again?"
+	puts "1. Yes\n"
+	puts "2. No"	
+	get_choice()
+	if @choice == 1
+		@page = 0
+		@choice = 1
+		@retval = :restart
+	end
+end
+
 #
 #  Game logic
 #
@@ -178,16 +192,7 @@ while @retval != :game_over
 		if @retval != :game_over
 			get_choice()
 		else
-			puts "The End."
-			puts "\nWant to start again?"
-			puts "1. Yes\n"
-			puts "2. No"	
-			get_choice()
-			if @choice == 1
-				@page = 0
-				@choice = 1
-				@retval = :restart
-			end
+			the_end()
 		end		
 	end
 end
