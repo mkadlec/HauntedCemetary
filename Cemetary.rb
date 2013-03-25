@@ -1,6 +1,6 @@
 # story array[page number, option 1 page number, option 2 page number] 
-story = [[0, 1, 1], [1, 2, 3], [2, 4, 3], [3, 5, 6], [4, 9, 3], [5, 12, 6], [6, 7, 8], [7, 99, 99], [8, 99, 99], [9, 1, 10],
-		 [10, 11, 99], [11, 1, 1], [12, 13, 1]]
+story = [[0, 1, 1], [1, 2, 3], [2, 4, 3], [3, 5, 15], [4, 9, 3], [5, 12, 6], [6, 7, 8], [7, 99, 99], [8, 99, 99], [9, 17, 10],
+		 [10, 11, 99], [11, 16, 1], [12, 13, 1], [13, 99, 99], [14, 15, 16], [15, 13, 1], [16, 1, 1]]
 # starting health
 @health = 10
 
@@ -47,7 +47,7 @@ def fight(opponent, opponent_health)
 			end
 
 			if @health <= 0
-				"\nYou died!"
+				"\nYou were knocked out!"
 				return :you_lost_the_fight
 			elsif opponent_health <= 0
 				"You beat the " + opponent + "!"
@@ -74,7 +74,7 @@ def get_choice()
 			return
 		end
 
-		puts "\nNot a valid choice, please try again."
+		puts "Not a valid choice, please try again."
 	end
 end
 
@@ -108,8 +108,10 @@ def go_to(page)
 	when 7
 		puts "You punch the shark and it seems to slow him down."
 		puts "You swim as fast as you can and reach the shore!"
-		puts "There is a treasure chest filled with gold, you are rich!"
-		return :game_over
+		puts "After climbing out of the pit,"
+		@page = 14
+		@choice = 0
+		return :skip_question
 	when 8
 		puts "Your gun does not work in water and before you can shoot the shark attacks you!"
 		puts "No one can find you in this shark tank, game over."
@@ -145,6 +147,23 @@ def go_to(page)
 		@page = 6
 		@choice = 0
 		return :skip_question
+	when 14
+		puts "You stumble upon a house, do you,"
+		puts "1. Keep walking"
+		puts "2. Go inside the house"	
+	when 15
+		puts "After walking for a while, you get lost, but then you see the shed you saw an hour ago!"
+		@page = 0
+		@choice = 1
+		return :skip_question
+	when 16
+		puts "You slowly open the door and in the dark you see a lot of spiders. You see a door and some stairs.  Do you,"
+		puts "1. Go in to the door"
+		puts "2. Go up the stairs"	
+	when 17
+		puts "You grab the map and run! You trip over a rock and fall asleep."
+		puts "After you wake up it is day time and you wonder what happened to the man..."
+		return :game_over
 	end
 
 end
@@ -165,9 +184,9 @@ def the_end
 	end
 end
 
-#
-#  Game logic
-#
+#####################
+#    Game logic     #
+#####################
 
 instructions()
 
