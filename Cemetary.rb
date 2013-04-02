@@ -1,6 +1,7 @@
 # story array[page number, option 1 page number, option 2 page number] 
 story = [[0, 1, 1], [1, 2, 3], [2, 4, 3], [3, 5, 15], [4, 9, 3], [5, 12, 6], [6, 7, 8], [7, 99, 99], [8, 99, 99], [9, 17, 10],
-		 [10, 11, 99], [11, 16, 1], [12, 13, 1], [13, 99, 99], [14, 15, 16], [15, 13, 1], [16, 1, 1]]
+		 [10, 11, 99], [11, 16, 1], [12, 13, 1], [13, 99, 99], [14, 15, 16], [15, 13, 1], [16, 18, 19], [17, 99, 99], [18, 22, 24], [19, 20, 21],
+		 [20, 99, 99], [21, 25, 1], [22, 23, 24], [23, 24, 99], [24, 99, 99], [25, 22, 24]]
 # starting health
 @health = 10
 
@@ -74,7 +75,7 @@ def get_choice()
 			return
 		end
 
-		puts "Not a valid choice, please try again."
+		puts "Type 1 or 2, please try again."
 	end
 end
 
@@ -125,7 +126,7 @@ def go_to(page)
 		result = fight("Zombie", 6)
 
 		if result == :you_won_the_fight
-			@health += 2
+			@health += 3
 		end
 
 		return result
@@ -138,7 +139,7 @@ def go_to(page)
 		result = fight("Mummy", 7)
 
 		if result == :you_won_the_fight
-			@health += 3
+			@health += 4
 		end
 
 		return result
@@ -164,6 +165,53 @@ def go_to(page)
 		puts "You grab the map and run! You trip over a rock and fall asleep."
 		puts "After you wake up it is day time and you wonder what happened to the man..."
 		return :game_over
+	when 18
+		puts "You open the door and step into the room.  You hear a \"crash\" and fall through the floor!"
+		puts "You wake up in the cellar and hear something behind the furnace.  Do you:"
+		puts "1. See what is making the sound"
+		puts "2. Try to climb outside through the basement window"
+	when 19
+		puts "You slowly walk up the stairs and see a hall in front of you."
+		puts "On the left is a dirty door and on the right is a shiny new door.  Do you:"
+		puts "1. Open the left door"
+		puts "2. Open the right door"
+	when 20
+		puts "You open the door and see a dusty old room.  In the corner you see a chest with no lock."
+		puts "You slowly open the chest and it is filled with gold coins!  Filling your pockets, you run all the way home...rich!"
+		return :game_over
+	when 21
+		puts "You open the shiny door and see a witch!  She grabs her broom and says, \"I will get you little boy!\""
+		puts "You have no time to run, you must fight her!"
+		result = fight("Witch", 6)
+
+		if result == :you_won_the_fight
+			@health += 3
+		end
+
+		return result		
+	when 22
+		puts "Behind the furnace you see a big wolf and bites you!  You are hurt, do you:"
+		puts "1. Fight him"
+		puts "2. Run and try and climb out the window"
+
+		@health -= 2
+	when 23
+		result = fight("Wolf", 7)
+
+		if result == :you_won_the_fight
+			@health += 3
+		end
+
+		return result
+	when 24
+		puts "You jump and climb out of the window and hear growling behind you."
+		puts "You made it outside!  You run home and will not go back to the cemetary again!"
+		return :game_over
+	when 25
+		puts "You beat the witch!  As you walk out of the room you, you fall through a hole in the floor."
+		puts "You wake up in the cellar and hear something behind the furnace.  Do you:"
+		puts "1. See what is making the sound"
+		puts "2. Try to climb outside through the basement window"
 	end
 
 end
@@ -209,7 +257,7 @@ while @retval != :game_over
 	elsif @retval == :you_ran_away
 		puts "\nYou run away, heal, and are ready to fight again!\n"
 		@choice = 0
-		@health = 8
+		@health = @health > 6 ? @health : @health + 2
 	elsif @retval == :skip_question
 		#do nothing
 	else
