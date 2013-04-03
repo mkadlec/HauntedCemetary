@@ -1,9 +1,10 @@
 # story array[page number, option 1 page number, option 2 page number] 
 story = [[0, 1, 1], [1, 2, 3], [2, 4, 3], [3, 5, 15], [4, 9, 3], [5, 12, 6], [6, 7, 8], [7, 99, 99], [8, 99, 99], [9, 17, 10],
 		 [10, 11, 99], [11, 16, 1], [12, 13, 1], [13, 99, 99], [14, 15, 16], [15, 13, 1], [16, 18, 19], [17, 99, 99], [18, 22, 24], [19, 20, 21],
-		 [20, 99, 99], [21, 25, 1], [22, 23, 24], [23, 24, 99], [24, 99, 99], [25, 22, 24]]
+		 [20, 99, 99], [21, 25, 1], [22, 23, 24], [23, 24, 99], [24, 99, 99], [25, 22, 24], [26, 1, 1]]
 # starting health
 @health = 10
+@runaway = 0
 
 def instructions()
 
@@ -232,6 +233,21 @@ def the_end
 	end
 end
 
+def runaway
+	@runaway++
+	@choice = 0
+	if @runaway > 1
+		"You run and run and run, all the way to the gate where you started your adventure."
+		@runaway = 0
+		@page = 0
+		@choice = 1
+	else
+		puts "\nYou run away, heal, and are ready to fight again!\n"	
+		@health = @health > 6 ? @health : @health + 2		
+	end
+end
+
+
 #####################
 #    Game logic     #
 #####################
@@ -249,15 +265,14 @@ while @retval != :game_over
 
 	if @retval == :you_won_the_fight
 		@choice = 1
+		@runaway = 0
 	elsif @retval == :you_lost_the_fight
 		puts "\nOh no! You wake up and are at the start again...\n"
 		@health = 10
 		@page = 0
 		@choice = 1
 	elsif @retval == :you_ran_away
-		puts "\nYou run away, heal, and are ready to fight again!\n"
-		@choice = 0
-		@health = @health > 6 ? @health : @health + 2
+		runaway()
 	elsif @retval == :skip_question
 		#do nothing
 	else
