@@ -1,6 +1,6 @@
 # story array[page number, option 1 page number, option 2 page number] 
 story = [[0, 1, 1], [1, 2, 3], [2, 4, 3], [3, 5, 15], [4, 9, 3], [5, 12, 6], [6, 7, 8], [7, 99, 99], [8, 99, 99], [9, 17, 10],
-		 [10, 11, 99], [11, 16, 1], [12, 13, 1], [13, 99, 99], [14, 15, 16], [15, 13, 1], [16, 18, 19], [17, 99, 99], [18, 22, 24], [19, 20, 21],
+		 [10, 11, 99], [11, 16, 27], [12, 13, 1], [13, 99, 99], [14, 15, 16], [15, 13, 1], [16, 18, 19], [17, 99, 99], [18, 22, 24], [19, 20, 21],
 		 [20, 99, 99], [21, 25, 1], [22, 23, 24], [23, 24, 99], [24, 99, 99], [25, 22, 24], [26, 1, 1]]
 # starting health
 @health = 10
@@ -213,6 +213,10 @@ def go_to(page)
 		puts "You wake up in the cellar and hear something behind the furnace.  Do you:"
 		puts "1. See what is making the sound"
 		puts "2. Try to climb outside through the basement window"
+	when 27
+		puts "After walking for two hours you come to a grave stone and he tells you this is where the treasure is."
+		puts "You both dig and find a coffin!  Inside it is filled with gold coins, you are both rich!"
+		return :game_over
 	end
 
 end
