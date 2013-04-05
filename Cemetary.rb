@@ -191,7 +191,7 @@ def go_to(page)
 
 		return result		
 	when 22
-		puts "Behind the furnace you see a big wolf and bites you!  You are hurt, do you:"
+		puts "Behind the furnace you see a big wolf and it bites you!  You are hurt, do you:"
 		puts "1. Fight him"
 		puts "2. Run and try and climb out the window"
 
@@ -247,7 +247,7 @@ def runaway
 		@choice = 1
 	else
 		puts "\nYou run away, heal, and are ready to fight again!\n"	
-		@health = @health > 6 ? @health : @health + 2		
+		@health = @health > 6 ? @health : @health + 3	
 	end
 end
 
@@ -263,7 +263,6 @@ instructions()
 @retval = :game_on
 
 while @retval != :game_over
-	#puts "Page:" + @page.to_s + " Choice:" + @choice.to_s
 	@page = story[@page][@choice]
 	@retval = go_to(@page)
 
